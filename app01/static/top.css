@@ -1,3 +1,24 @@
+.header-body > h1{
+    text-align: center;
+    color: #00A0E9;
+    font-size: 40px;
+    height: 50px;
+    text-shadow: 2px 2px 2px rgb(180, 180, 180);
+}
+
+div.up {
+    text-align: right;
+    color: #00A0E9;
+    margin-right: 5px;
+}
+
+.up > p {
+    color: aquamarine;
+    margin: 0px 0px 0px 0px;
+}
+
+
+/*
 html{
     box-sizing: border-box;
 }
@@ -11,7 +32,7 @@ body{
 
 header {
     background-color: white;
-    border-bottom: 1.5px solid rgba(207, 207, 207, 0.486); 
+    border-bottom: 1.5px solid rgba(207, 207, 207, 0.486);
     position: fixed;
     height: 150px;
     width: 100%;
@@ -84,3 +105,9 @@ nav {
     color: white;
     margin-right: 35px;
   }
+
+div.up {
+    text-align: right;
+    color: lightcoral;
+}
+*/

@@ -17,3 +17,18 @@ def param(request):
 
 def top(request):
     return render(request, 'app01/top.html')
+
+def dm(request):
+    return render(request, 'app01/dm.html')
+
+def tt(request):
+    return render(request, 'app01/tt.html')
+
+def logout(request):
+    return render(request, 'app01/login.html')
+
+def cla(request):
+    return render(request, 'app01/cla.html')
+
+def event(request):
+    return render(request, 'app01/event.html')

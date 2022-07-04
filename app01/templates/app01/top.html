@@ -14,18 +14,15 @@
       <div class="header-body">
         <h1>掲示板</h1>
       </div>
+      <div class = "up">
+        <p><a href="{% url 'logout' %}">ログアウト</a></p>
+        <p><a href="{% url 'dm' %}">DM</a></p>
+        <p><a href="{% url 'tt' %}">時間割</a></p>
+      </div>
     </header>
-    <nav>
-        <ul>
-          <li><a href="#">HOME</a></li>
-          <li><a href="#">サービス紹介</a></li>
-          <li><a href="#">最新情報</a></li>
-          <li><a href="#">ブログ</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
-    </nav>
     <main>
-      <p>あ</p>
+      <p><a href="{% url 'cla' %}">授業について</a></p>
+      <p><a href="{% url 'event' %}">行事について</a></p>
     </main>
   </body>
 </html>

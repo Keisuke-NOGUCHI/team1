@@ -23,4 +23,9 @@ urlpatterns = [
     path('', app01.views.top, name='top'),
     path('app01/pattern/<username>/', app01.views.pattern, name='pattern'),
     path('app01/param/', app01.views.param, name='param'),
+    path('top/dm', app01.views.dm, name='dm'),
+    path('top/tt', app01.views.tt, name='tt'),
+    path('login', app01.views.logout, name='logout'),
+    path('cla', app01.views.cla, name='cla'),
+    path('event', app01.views.logout, name='event'),
 ]
