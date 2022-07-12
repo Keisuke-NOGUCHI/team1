@@ -19,8 +19,8 @@ import app01.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('top/', app01.views.root),
-    path('', app01.views.top, name='top'),
+    path('', app01.views.root),
+    path('top/', app01.views.top, name='top'),
     path('app01/pattern/<username>/', app01.views.pattern, name='pattern'),
     path('app01/param/', app01.views.param, name='param'),
     path('top/dm', app01.views.dm, name='dm'),
@@ -28,4 +28,6 @@ urlpatterns = [
     path('login', app01.views.logout, name='logout'),
     path('cla', app01.views.cla, name='cla'),
     path('event', app01.views.logout, name='event'),
+    path('osero', app01.views.osero, name='osero'),
+    path('home', app01.views.home, name='home'), #login中か確かめるテスト用
 ]

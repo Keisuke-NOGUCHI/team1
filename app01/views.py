@@ -32,3 +32,9 @@ def cla(request):
 
 def event(request):
     return render(request, 'app01/event.html')
+    
+def osero(request):
+    return render(request, 'app01/osero.html')
+
+def home(request):
+    return render(request, 'app01/mytest.html')
