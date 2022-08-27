@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
     <link rel="stylesheet" href="{% static 'top.css' %}">
   </head>
   <body>
@@ -14,16 +14,40 @@
       <div class="header-body">
         <h1>掲示板</h1>
       </div>
-      <div class = "up">
-        <p><a href="{% url 'logout' %}">ログアウト</a></p>
-        <p><a href="{% url 'dm' %}">DM</a></p>
-        <p><a href="{% url 'tt' %}">時間割</a></p>
-      </div>
-    </header>
-    <main>
-      <p><a href="{% url 'cla' %}">授業について</a></p>
-      <p><a href="{% url 'event' %}">行事について</a></p>
-      <p><a href="{% url 'osero' %}">ゲーム</a></p>
+
+      <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        <div>
+          <div>
+            <label for="titleInput">タイトル</label>
+            <input id="titleInput" name="title" type="text" placeholder="Input name">
+          </div>
+          <div>
+            <label for="textInput">内容</label>
+            <textarea id="textInput" name="text" cols="30" rows="10" ></textarea>
+          </div>
+        </div>
+        <div>
+          <button type="submit" id="button">投稿</button>
+        </div>
+      </form>
+
+      <br>
+      {% if articles %}
+        {% for article in articles %}
+          <div>
+            <h5>title:{{ article.title }}</h5>
+            {{ article.body | linebreaksbr }}
+            <small>[{{ article.posted_at }}]</small>
+            <a href="{% url 'detail' article.id %}">編集</a>
+            <br>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p> 投稿はありません</p>
+      {% endif %}
+
     </main>
   </body>
 </html>
+

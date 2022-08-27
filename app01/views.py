@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.http import Http404
+from app01.models import Article
 
 # Create your views here.
 
@@ -38,3 +40,49 @@ def osero(request):
 
 def home(request):
     return render(request, 'app01/mytest.html')
+
+def index(request):
+	if request.method == 'POST':
+		article = Article(title=request.POST["title"],body=request.POST["text"])
+		article.save()
+		context = {
+				"articles": Article.objects.order_by("-posted_at"),
+			}
+		return render(request, 'app01/top.html', context)
+	else:
+		context = {
+            "articles": Article.objects.order_by("-posted_at")
+			#"articles": Article.objects.all()
+	    }
+		return render(request, 'app01/top.html', context)
+
+def update(request, article_id):
+	try:
+		article = Article.objects.get(pk=article_id)
+	except Article.DoesNotExist:
+		raise Http404("Article does not exist")
+	if request.method == 'POST':
+		article.title = request.POST['title']
+		article.body = request.POST['text'] 
+		article.save()
+		return redirect(detail, article_id)
+	context = {
+		"article": article
+	}
+	return render(request, 'app01/keijiban-edit.html', context)
+
+def delete(request, article_id):
+	try:
+		article = Article.objects.get(pk=article_id)
+	except Article.DoesNotExist:
+		raise Http404("Article dose not exist")
+	article.delete()
+	return redirect(index)
+
+def detail(request, article_id):
+	try:
+		article = Article.objects.get(pk=article_id)
+	except Article.DoesNotExist:
+		raise Http404("Article does not exist")
+	context = {"article": article}
+	return render(request, 'app01/keijiban-detail.html', context)

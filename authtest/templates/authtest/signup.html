@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>サインアップ</title>
+
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>～アプリ名～</h1>
+        <h3>アカウント作成</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button id="button" type="submit">ユーザー登録</button>
+        </form>
+
+        <p><a href="{% url 'home' %}">ホームに戻る</a></p>
+    </body>
+</html>

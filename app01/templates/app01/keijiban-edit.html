@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>投稿内容の編集</title>
+        {% load static %}
+    </head>
+
+    <body>
+        <h1>編集</h1>
+        <form action="{% url 'update' article.id %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="titleInput">名前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input id="titleInput" name="title" type="text" placeholder="Input name" value="{{ article.title }}">
+            </div>
+            <div>
+                <label for="textInput">投稿内容</label>
+                <textarea id="textInput" name="text" cols="80" rows="8">
+                    {{ article.body }}
+                </textarea>
+            </div>
+            <div>
+                <button type="submit" id="button">再投稿</button>
+            </div>
+        </form>
+    </body>
+</html>

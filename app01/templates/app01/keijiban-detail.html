@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>投稿確認</title>
+        {% load static %}
+    </head>
+
+    <body>
+        <h1>投稿確認ページ</h1>
+        <br>
+        
+        <div>
+            <h2>名前</h2>
+            <p>{{ article.title }}</p>
+            <h2>内容</h2>
+            <div>
+               {{ article.body | linebreaksbr }}
+            </div>
+            <h2>日時</h2>
+            <small>{{ article.posted_at }}</small>
+        </div>
+        <p>
+            <a href="{% url 'index' %}" id="Top">Top</a>
+            <a href="{% url 'update' article.id %}" id="edit">編集</a>
+            <a href="{% url 'delete' article.id %}" id="delete">削除</a>
+        </p>        
+    </body>
+</html>

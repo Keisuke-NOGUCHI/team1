@@ -1,0 +1,20 @@
+<html lang="ja"><head><meta charset="utf-8"></head>
+  <body>
+    <h1>Home</h1>
+
+    {% if user.is_authenticated %}
+    <p>id: {{ user.username }}!</p>
+    <p>ユーザー名: {{ user.userinfo.username }}</p>
+    <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+    <p>You are not logged in.</p>
+    <p><a href="{% url 'login' %}">login</a></p>
+    <p><a href = "{% url 'signup' %}">アカウント作成</a></p>
+    {% endif %}
+
+    <hr>
+    <p><a href="{% url 'priv' %}">priv</a></p>
+    <p><a href="{% url 'pub' %}">public</a></p>
+    <a href="{% url 'pub' %}"><img src="..\media\images\kano.jpg" width="300" height="400"></a>
+</body>
+</html>
