@@ -31,3 +31,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'authtest/signup.html', {'form': form})
+
+def top_page(request):
+    return render(request, 'app01/top.html', {})

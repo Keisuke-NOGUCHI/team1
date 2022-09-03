@@ -130,4 +130,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 #Wi-fiに共有
-ALLOWED_HOSTS = ['192.168.0.12']
+#ALLOWED_HOSTS = ['192.168.0.12']
+ALLOWED_HOSTS = []

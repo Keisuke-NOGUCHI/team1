@@ -6,4 +6,5 @@ urlpatterns = [
     path('priv', views.private_page, name='priv'),
     path('pub', views.public_page, name='pub'),
     path('signup/', views.signup, name='signup'),
+    path('top', views.top_page, name='top'),
 ]
