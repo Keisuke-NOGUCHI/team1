@@ -7,4 +7,6 @@ urlpatterns = [
     path('pub', views.public_page, name='pub'),
     path('signup/', views.signup, name='signup'),
     path('top', views.top_page, name='top'),
+    #path('start/', views.start_page, name='start'),
+    path('mypage/', views.mypage, name='mypage'),
 ]

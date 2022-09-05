@@ -34,3 +34,9 @@ def signup(request):
 
 def top_page(request):
     return render(request, 'app01/top.html', {})
+
+def start_page(request):
+    return render(request, 'authtest/start.html', {})
+
+def mypage(request):
+    return render(request, 'authtest/mypage.html', {})

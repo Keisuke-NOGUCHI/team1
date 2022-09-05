@@ -1,0 +1,148 @@
+{% load static %}
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+    </head>
+  <body>
+    <h1>Home</h1>
+
+    {% if user.is_authenticated %}
+    <p>id: {{ user.username }}!</p>
+    <p>ユーザー名: {{ user.userinfo.username }}</p>
+    <a href="{% url 'logout' %}">logout</a>
+    <p><a href="{% url 'priv' %}">priv</a></p>
+    <p><a href="{% url 'pub' %}">public</a></p>
+    <a href="{% url 'pub' %}"><img src="..\media\images\kano.jpg" width="300" height="400"></a>
+
+    <table class="timetable">
+        <tbody>
+            <tr>
+                <th>〇</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <td>
+                    <p>理科</p>
+                </td>
+                <td>
+                    <p>国語</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <td>
+                    <p>数学</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>英語</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <td>
+                    <p>英語</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>社会</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+            </tr>
+            <tr>
+                <th>5</th>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>理科</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>英語</p>
+                </td>
+            </tr>
+            <tr>
+                <th>6</th>
+                
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+                <td>
+                    <p>国語</p>
+                </td>
+                <td>
+                    <p>-</p>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+
+    {% else %}
+    <p>You are not logged in.</p>
+    <p><a href="{% url 'login' %}">login</a></p>
+    <p><a href = "{% url 'signup' %}">アカウント作成</a></p>
+    {% endif %}
+  </body>
+</html>

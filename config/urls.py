@@ -11,10 +11,10 @@ import app01.views
 
 urlpatterns = [
     path('chat/', include('chat.urls')),
-    path('app01/', include('authtest.urls')),
+    path('', include('authtest.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('', app01.views.root),
+    #path('', app01.views.root),
     path('top/', include('app01.urls')),
 ]
 
