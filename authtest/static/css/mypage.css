@@ -1,8 +1,21 @@
 .timetable {
-    background-color: #adadad;
-    border: 1px solid #adadad;
+    border: 1px solid;
+    color: #2e7c40;
 }
+
+.timetable td {
+    background: #F4FDE8;
+}
+
 
 h1 {
     color: aquamarine;
+}
+
+.user-icon {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1.5px solid #eee;
 }
