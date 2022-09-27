@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
-from app01.models import Article
+from app01.models import Article, Comment
 
 # Create your views here.
 
@@ -44,6 +44,11 @@ def home(request):
 def index(request):
 	if request.method == 'POST':
 		article = Article(title=request.POST["title"],body=request.POST["text"])
+		#,image=request.POST['image'])
+		#if  "image" in request.POST:
+		#	article.image=request.FILES['image']
+		#else:
+		#	article.image=False
 		article.save()
 		context = {
 				"articles": Article.objects.order_by("-posted_at"),
@@ -84,5 +89,30 @@ def detail(request, article_id):
 		article = Article.objects.get(pk=article_id)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
-	context = {"article": article}
+
+	if request.method == 'POST':
+		comment = Comment(article=article, text=request.POST['text'])
+		comment.save()
+
+	context = {
+		"article": article,
+		"comments": article.comments.order_by("-posted_at")
+		}
 	return render(request, 'app01/keijiban-detail.html', context)
+
+
+def like(request, article_id):
+	try:
+		article = Article.objects.get(pk=article_id)
+		article.like += 1
+		article.save()
+	except Article.DoesNotExist:
+		raise Http404("Article does not exist")
+	return redirect(index)
+
+def rank(request):
+	context = {
+        "articles": Article.objects.order_by("-like")
+		#"articles": Article.objects.all()
+	}
+	return render(request, 'app01/rank.html', context)

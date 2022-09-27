@@ -22,8 +22,38 @@
         </div>
         <p>
             <a href="{% url 'index' %}" id="Top">Top</a>
+            <a href="{% url 'rank' %}" id="rank">Rank</a>
             <a href="{% url 'update' article.id %}" id="edit">編集</a>
             <a href="{% url 'delete' article.id %}" id="delete">削除</a>
-        </p>        
+        </p>
+        
+        <hr>
+        <h2>Comments</h2>
+
+        <form action="{% url 'detail' article.id %}" method="post">
+            {% csrf_token %}
+            <diV>
+                <label for="textInput">Text</label>
+                <textarea id="titleInput" name="text" rows="3"></textarea>
+            </diV>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        {% if comments %}
+        {% for comment in comments %}
+        <div>
+            <div>
+                <small>[{{ comment.posted_at }}]</small>
+            </div>
+            <div>
+                {{ comment.text | linebreaksbr }}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>コメントがありません。</p>
+        {% endif %}
     </body>
 </html>

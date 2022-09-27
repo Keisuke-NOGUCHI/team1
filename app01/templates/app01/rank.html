@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>掲示板</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="{% static 'rank.css' %}">
+  </head>
+  <body>
+    <header>
+      <div class="header-body">
+        <h1>ランキング</h1>
+      </div>
+
+
+      <br>
+      {% if articles %}
+        {% for article in articles %}
+          <div>
+            <h5>title:{{ article.title }}</h5>
+            {{ article.body | linebreaksbr }}
+            <small>[{{ article.posted_at }}]</small>
+            <p>Liek:{{ article.like }}</p>
+            <a href="{% url 'detail' article.id %}">編集</a>
+            <br>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p> 投稿はありません</p>
+      {% endif %}
+
+      <p><a href="{% url 'index' %}" id="Top">Top</a></p>
+    </main>
+  </body>
+</html>

@@ -128,6 +128,10 @@ LOGOUT_REDIRECT_URL = 'home'
 #画像表示のため
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+if DEBUG:
+    MEDIA_ROOT = BASE_DIR / 'media'
+else:
+    MEDIA_ROOT = f'/var/www/{BASE_DIR.name}/media'
 
 #Wi-fiに共有
 #ALLOWED_HOSTS = ['192.168.0.12']
