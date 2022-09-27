@@ -10,15 +10,21 @@
     {% if user.is_authenticated %}
     <p>id: {{ user.username }}!</p>
     <p>ユーザー名: {{ user.userinfo.username }}</p>
+    {% if user.userinfo.icon %}
+    <img src="{{ user.userinfo.icon }}" class="user-icon">
+    {% else %}
+    <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+    {% endif %}
+    <img src="{{ user.userinfo.icon }}" class="user-icon">
     <a href="{% url 'logout' %}">logout</a>
     <p><a href="{% url 'priv' %}">priv</a></p>
     <p><a href="{% url 'pub' %}">public</a></p>
-    <a href="{% url 'pub' %}"><img src="..\media\images\kano.jpg" width="300" height="400"></a>
 
-    <table class="timetable">
+    <table class="timetable" border="5px">
         <tbody>
+            <tr><h3>時間割</h3></tr>
             <tr>
-                <th>〇</th>
+                <th>　</th>
                 <th>月</th>
                 <th>火</th>
                 <th>水</th>

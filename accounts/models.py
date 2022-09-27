@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 class Person(models.Model):
     age = models.IntegerField(null=True)
     #IntegerField→数字
-    user = models.OneToOneField(User, related_name="userinfo", on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name="userinfo", on_delete=models.CASCADE, unique=True)
     # on_delete 片方消したら両方消えるようにする。
     username = models.CharField(null=True, max_length=30)
+    # アイコン画像
+    icon = models.ImageField(blank=True, null=True)
