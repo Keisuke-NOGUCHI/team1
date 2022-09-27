@@ -2,13 +2,15 @@
   <body>
     <h1>Home</h1>
 
+    {{ pri }}
+
     {% if user.is_authenticated %}
     <p>id: {{ user.username }}!</p>
     <p>ユーザー名: {{ user.userinfo.username }}</p>
     <a href="{% url 'logout' %}">logout</a>
     <p><a href="{% url 'priv' %}">priv</a></p>
     <p><a href="{% url 'pub' %}">public</a></p>
-    <p><a href="{% url 'top' %}">top</a></p>
+    <a href="{% url 'top' %}"><img src="..\media\images\ひろゆき.jpg" width="150" height="100">掲示板</a>
     <p><a href="{% url 'mypage' %}">mypage</a></p>
     <a href="{% url 'pub' %}"><img src="..\media\images\kano.jpg" width="300" height="400"></a>
     {% else %}
