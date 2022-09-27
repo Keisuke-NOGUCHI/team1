@@ -93,13 +93,12 @@ def detail(request, article_id):
 	if request.method == 'POST':
 		comment = Comment(article=article, text=request.POST['text'])
 		comment.save()
-
+	
 	context = {
 		"article": article,
 		"comments": article.comments.order_by("-posted_at")
 		}
 	return render(request, 'app01/keijiban-detail.html', context)
-
 
 def like(request, article_id):
 	try:

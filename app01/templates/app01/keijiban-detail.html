@@ -7,7 +7,7 @@
     </head>
 
     <body>
-        <h1>投稿確認ページ</h1>
+        <h1>投稿詳細</h1>
         <br>
         
         <div>
@@ -28,18 +28,7 @@
         </p>
         
         <hr>
-        <h2>Comments</h2>
-
-        <form action="{% url 'detail' article.id %}" method="post">
-            {% csrf_token %}
-            <diV>
-                <label for="textInput">Text</label>
-                <textarea id="titleInput" name="text" rows="3"></textarea>
-            </diV>
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+        <h3>コメント</h3>
 
         {% if comments %}
         {% for comment in comments %}
@@ -55,5 +44,18 @@
         {% else %}
         <p>コメントがありません。</p>
         {% endif %}
+        
+        <form action="{% url 'detail' article.id %}" method="post">
+            {% csrf_token %}
+            <diV>
+                <label for="textInput">Text</label>
+                <textarea id="titleInput" name="text" rows="3"></textarea>
+            </diV>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+
+        
     </body>
 </html>
