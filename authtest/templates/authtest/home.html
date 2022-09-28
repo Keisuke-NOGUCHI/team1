@@ -2,6 +2,8 @@
   <body>
     <h1>Home</h1>
 
+    {{ pri }}
+
     {% if user.is_authenticated %}
     <p>id: {{ user.username }}!</p>
     <p>ユーザー名: {{ user.userinfo.username }}</p>
