@@ -15,7 +15,7 @@
         <h1>掲示板</h1>
       </div>
 
-      <form action="{% url 'index' %}" method="post">
+      <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
           <div>
@@ -26,6 +26,11 @@
             <label for="textInput">内容</label>
             <textarea id="textInput" name="text" cols="30" rows="10" ></textarea>
           </div>
+          <!--
+          <div>
+            <label for="image">画像</label>
+            <input type="file" name="image" accept="image/jpeg, image/png">
+          </div>-->
         </div>
         <div>
           <button type="submit" id="button">投稿</button>
@@ -38,7 +43,18 @@
           <div>
             <h5>title:{{ article.title }}</h5>
             {{ article.body | linebreaksbr }}
+            <diV>
+              {% if article.image %}
+              <img src="{{ article.image.url }}" style="width:300px;height:auto">
+              {% endif %}
+            </diV>
             <small>[{{ article.posted_at }}]</small>
+            <div>
+              <a href="{% url 'like' article.id %}">
+                <i>Like</i>
+                {{ article.like }}
+              </a>
+            </div>
             <a href="{% url 'detail' article.id %}">編集</a>
             <br>
           </div>
@@ -46,6 +62,8 @@
       {% else %}
         <p> 投稿はありません</p>
       {% endif %}
+
+      <p><a href="{% url 'rank' %}" id="rank">Rank</a></p>
 
     </main>
   </body>
