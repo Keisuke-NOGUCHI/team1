@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    background-color: #E5E5E5;
+    top: 48px;
+}
+
+.inner {
+    position: relative;
+    top: 0;
+}
+
+.inner_color {
+    background-color: #1E371A;
+    width:  100%;
+    height: 48px;
+    z-index: 99;
+    position: absolute;
+}
+
+.inner_color h2 {
+    position: absolute;
+    color: aliceblue;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0px;
+}
+
+.user p {
+    margin: 8px 0 8px 0;
+    color: #ffffff;
+}
+
+.user-icon {
+    width: 48px;
+    height: 48px;
+}
+
+
+li {
+    position: relative;
+}
+
+a {
+    height: auto;
+}
+
+a img {
+    display: inline-block;
+    bottom: 0px;
+    padding: 0px;
+    /* background-color: white; */
+}
+
+a p {
+    display: inline-block;
+    top: 30%;
+    transform: translate(0, -70%);
+    margin: 0px 8px 0px 8px;
+}
+
+.h-menu {
+    z-index: 100;
+    position: absolute;
+}
+
+/*inputのcheckboxは非表示に*/
+.h-menuCheckbox {
+    display:none;
+}
+
+/*ハンバーガーメニュー*/
+.h-menu_icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    position: absolute;
+    left: 8px;
+}
+
+/*3本線*/
+.hamburger-icon, .hamburger-icon::before, .hamburger-icon::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 100;
+    top:0;
+    bottom:0;
+    width: 32px;
+    height: 3px;
+    background: white;
+    cursor: pointer;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.hamburger-icon:before {
+    top: 10px;
+}
+.hamburger-icon:after {
+    top: 20px;
+}
+
+
+/*中身*/
+#h-menu_content {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    max-width: 200px;
+    height: 100vh;
+    padding: 16px 16px 16px;
+    background: #345E2D;
+    overflow: auto;
+    transition: .3s ease-in-out;
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);
+}
+
+/*チェックボックスにチェックが入ったら表示*/
+input:checked ~ .h-menu_icon .hamburger-icon{
+    background: transparent;
+}
+
+input:checked ~ .h-menu_icon .hamburger-icon::before{
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top:10px;
+    z-index:100;
+}
+input:checked ~ .h-menu_icon .hamburger-icon::after{
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top:10px;
+    z-index:999;
+}
+  input:checked ~ #h-menu_black {
+      display: block;/*カバーを表示*/
+      opacity: .8;
+  }
+  #h-menu_checkbox:checked ~ #h-menu_content {
+      -webkit-transform: translateX(0%);
+      transform: translateX(0%);
+      box-shadow: 6px 0 25px rgba(0,0,0,.15);
+  }
+  .h-menu_icon .hamburger-icon, .h-menu_icon .hamburger-icon::before, .h-menu_icon .hamburger-icon::after, #h-menu_black, #h-menu_content{
+      -webkit-transition: all .3s ;
+      transition: all .3s ;}
+  
+  #h-menu_content ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  }
+  #h-menu_content ul li{
+      border-bottom: solid 1px white;
+  }
+  #h-menu_content li a {
+      display: block;
+      color: white;
+      font-size: 14px;
+      padding: 8px;
+      text-decoration: none;
+      transition-duration: 0.2s;
+  }
+  #h-menu_content li a:hover {
+      background: #455b6d;
+  }

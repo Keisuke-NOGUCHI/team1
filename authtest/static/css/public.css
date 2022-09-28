@@ -1,0 +1,20 @@
+.jugyou {
+    position: relative;
+    display: block;
+}
+
+.jugyou img {
+    position: absolute;
+}
+
+.jugyou iframe {
+    position: absolute;
+    left: 56px;
+    top: 96px;
+    z-index: 100;
+}
+
+.map {
+    display: block;
+    bottom: 0px;
+}

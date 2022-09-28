@@ -1,8 +1,47 @@
-<html lang="ja"><head><meta charset="utf-8"></head>
+{% load static %}
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/public.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  </head>
+
+  <header>
+    <div class="inner">
+      <div class="inner_color">
+        <a href="{% url 'home' %}"><h2>アプリ名</h2></a>
+      </div>
+    
+      <div class="h-menu">
+        <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
+        <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
+        <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
+        <div id="h-menu_content">
+          <ul>
+            <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
+            <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
+            <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
+            <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
+            <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
   <body>
-    <h1>public</h1>
-    <p>Public</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PL-WdCz5654QAsHrmGFpK2JnDsb35UGeAj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12947.199206710324!2d139.70679152389164!3d35.78029378273849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018931934050759%3A0x239ff01917c6ae5a!2z5p2x5rSL5aSn5a2mIOaDheWgsemAo-aQuuWtpumDqCAoSU5JQUQp!5e0!3m2!1sja!2sjp!4v1661601487613!5m2!1sja!2sjp" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div>
+    <h1>オンデマンド</h1>
+    <p>オンデマンドページ</p>
+    {% comment %} <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?controls=0&amp;list=PL-WdCz5654QAsHrmGFpK2JnDsb35UGeAj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> {% endcomment %}
+    <iframe width="320" height="467" src="https://www.youtube.com/embed/Wzykoun2yx0" title="世界史" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="jugyou">
+      <iframe width="492" height="296" src="https://www.youtube.com/embed/1eD9oG7UXSU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img src="..\media\images\tv.png" width="600"height="600">
+    </div>
+    {% comment %} <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12947.199206710324!2d139.70679152389164!3d35.78029378273849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018931934050759%3A0x239ff01917c6ae5a!2z5p2x5rSL5aSn5a2mIOaDheWgsemAo-aQuuWtpumDqCAoSU5JQUQp!5e0!3m2!1sja!2sjp!4v1661601487613!5m2!1sja!2sjp" width="240" height="160" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div> {% endcomment %}
+  </div>
   </body>
 </html>

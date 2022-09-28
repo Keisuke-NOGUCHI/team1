@@ -9,4 +9,5 @@ urlpatterns = [
     path('top', views.top_page, name='top'),
     #path('start/', views.start_page, name='start'),
     path('mypage/', views.mypage, name='mypage'),
+    path('chat/', views.mypage, name='chat'),
 ]

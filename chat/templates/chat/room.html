@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<!-- chat/templates/chat/room.html -->
+
 <html>
 <head>
     <meta charset="utf-8"/>  <title>Chat Room</title>
 </head>
+
+
 <body>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
     <input id="chat-message-input" type="text" size="100"/><br/>
@@ -34,16 +35,3 @@
     };
 </script>
 </html>
-chat/views.py
-
-from django.shortcuts import render
-from django.utils.safestring import mark_safe
-import json
-# Create your views here.
-def index(request):
-    return render(request, 'chat/index.html', {})
-
-def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
-    })

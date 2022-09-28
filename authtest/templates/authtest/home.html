@@ -1,22 +1,67 @@
-<html lang="ja"><head><meta charset="utf-8"></head>
+{% load static %}
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  </head>
+
+  <header>
+    <div class="inner">
+      <div class="inner_color">
+        <a href="{% url 'home' %}"><h2>アプリ名</h2></a>
+        <p></p>
+      </div>
+    
+      <div class="h-menu">
+        <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
+        <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
+        <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
+        <div id="h-menu_content">
+          <ul>
+            <li>
+              {% if user.is_authenticated %}
+              {% if user.userinfo.icon %}
+              <p>ユーザー名: {{ user.userinfo.username }}</p>
+              <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+              {% else %}
+              <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+              {% endif %}
+              <div class="user">
+                <p>学籍番号: {{ user.username }}</p>
+                <p>ユーザー名: {{ user.userinfo.username }}</p>
+              </div>
+              {% endif %}
+            </li>
+            <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
+            <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
+            <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
+            <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
+            <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  
   <body>
-    <h1>Home</h1>
-
-    {{ pri }}
-
+    <div>
+    <h1>トップページ</h1>
     {% if user.is_authenticated %}
-    <p>id: {{ user.username }}!</p>
+    <p>学籍番号: {{ user.username }}</p>
     <p>ユーザー名: {{ user.userinfo.username }}</p>
     <a href="{% url 'logout' %}">logout</a>
     <p><a href="{% url 'priv' %}">priv</a></p>
     <p><a href="{% url 'pub' %}">public</a></p>
-    <a href="{% url 'top' %}"><img src="..\media\images\ひろゆき.jpg" width="150" height="100">掲示板</a>
+    <a href="{% url 'top' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="64" height="64"></a>
     <p><a href="{% url 'mypage' %}">mypage</a></p>
-    <a href="{% url 'pub' %}"><img src="..\media\images\kano.jpg" width="300" height="400"></a>
+    <a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="64" height="64"></a>
     {% else %}
     <p>You are not logged in.</p>
     <p><a href="{% url 'login' %}">login</a></p>
     <p><a href = "{% url 'signup' %}">アカウント作成</a></p>
     {% endif %}
+    </div>
   </body>
 </html>

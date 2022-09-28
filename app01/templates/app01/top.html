@@ -1,12 +1,37 @@
 {% load static %}
-<!DOCTYPE html>
 <html>
   <head>
     <title>掲示板</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'css/top.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
   </head>
+
+  <header>
+    <div class="inner">
+      <div class="inner_color">
+        <a href="{% url 'home' %}"><h2>アプリ名</h2></a>
+      </div>
+    
+      <div class="h-menu">
+        <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
+        <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
+        <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
+        <div id="h-menu_content">
+          <ul>
+            <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
+            <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
+            <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
+            <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
+            <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
   <body>
     <header>
       <div class="header-body">
@@ -55,7 +80,7 @@
                 </div>
               </a>
             </div>
-            <a href="{% url 'detail' article.id %}">編集</a>
+            <a href="{% url 'detail' article.id %}">詳細</a>
             <br>
           </div>
         {% endfor %}
