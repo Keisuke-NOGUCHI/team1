@@ -1,3 +1,4 @@
 .article {
-    border: 2px solid;
+    border-top: 1px solid;
+    border-color: rgba(124, 124, 124, 0.8);
 }
