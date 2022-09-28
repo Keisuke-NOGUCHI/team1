@@ -64,7 +64,7 @@
       {% if articles %}
         {% for article in articles %}
           <div class="article">
-            <h5>{{ article.title }}</h5>
+            <h5>title:{{ article.title }}</h5>
             {{ article.body | linebreaksbr }}
             <diV>
               {% if article.image %}
@@ -74,10 +74,8 @@
             <small>[{{ article.posted_at }}]</small>
             <div>
               <a href="{% url 'like' article.id %}">
-                <div class="like">
-                  <div class="heart"></div>
-                  <div class="heart_cnt">{{ article.like }}</diV>
-                </div>
+                <i>Like</i>
+                {{ article.like }}
               </a>
             </div>
             <a href="{% url 'detail' article.id %}">詳細</a>
