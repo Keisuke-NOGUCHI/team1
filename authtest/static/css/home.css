@@ -1,0 +1,18 @@
+.rank {
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+    background-color: #E5E5E5;
+    position: relative;
+    margin: 16px;
+}
+
+.rank p {
+    position: absolute;
+    text-align: center;
+    top: 16px;
+}
+
+.rank img {
+    position: absolute;
+}

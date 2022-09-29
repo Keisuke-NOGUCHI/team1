@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-color: #E5E5E5;
+    background-color: #fefefe;
     top: 48px;
 }
 
@@ -58,6 +58,7 @@ a p {
     transform: translate(0, -70%);
     margin: 0px 8px 0px 8px;
 }
+
 
 .h-menu {
     z-index: 100;

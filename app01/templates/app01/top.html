@@ -74,9 +74,10 @@
             <small>[{{ article.posted_at }}]</small>
             <div>
               <a href="{% url 'like' article.id %}">
-                <i>Like</i>
-                {{ article.like }}
+                <img src="..\media\images\heart.png" width="16" height="16">
               </a>
+                {{ article.like }}
+              
             </div>
             <a href="{% url 'detail' article.id %}">詳細</a>
             <br>

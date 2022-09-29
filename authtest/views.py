@@ -40,6 +40,3 @@ def start_page(request):
 
 def mypage(request):
     return render(request, 'authtest/mypage.html', {})
-
-def pri(request):
-    return "11"
