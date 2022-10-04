@@ -50,9 +50,9 @@
         <br>
         
         <div>
-            <h2>名前</h2>
+            <h3>title:</h3>
             <p>{{ article.title }}</p>
-            <h2>内容</h2>
+            <h3>内容</h3>
             <div>
                {{ article.body | linebreaksbr }}
             </div>
@@ -61,7 +61,7 @@
               <img src="{{ article.image.url }}" style="width: 300px;height:auto">
               {% endif %}
             </diV>
-            <h2>日時</h2>
+            <h3>日時</h3>
             <small>{{ article.posted_at }}</small>
         </div>
         <p>
