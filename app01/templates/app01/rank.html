@@ -64,6 +64,9 @@
             <p><img src="..\media\images\heart.png" width="16" height="16">  {{ article.like }}</p>
             <a href="{% url 'detail' article.id %}">編集</a>
             <br>
+            {% if article.image %}
+              <img src="{{ article.image.url }}" style="width: 100px;height:auto">
+              {% endif %}
           </div>
         {% endfor %}
       {% else %}
