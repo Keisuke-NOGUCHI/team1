@@ -7,7 +7,7 @@ class Article(models.Model):
     posted_at = models.DateTimeField(default=timezone.now)
     published_at = models.DateTimeField(blank=True, null=True)
     like = models.IntegerField(default=0)
-    #image = models.ImageField(upload_to='images',null=True, blank=True)
+    image = models.ImageField(upload_to='media/images',null=True, blank=True)
 
     def publish(self):
         self.published_at = timezone.now()

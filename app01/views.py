@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 from app01.models import Article, Comment
+from .forms import Image
 
 # Create your views here.
 
@@ -43,12 +44,13 @@ def home(request):
 
 def index(request):
 	if request.method == 'POST':
+		form = Image(request.POST)
 		article = Article(title=request.POST["title"],body=request.POST["text"])
-		#,image=request.POST['image'])
-		#if  "image" in request.POST:
-		#	article.image=request.FILES['image']
-		#else:
-		#	article.image=False
+		#article.image=request.POST['image']
+		if form.is_valid():
+			article.image=request.FILES['image']
+		else:
+			article.image=False
 		article.save()
 		context = {
 				"articles": Article.objects.order_by("-posted_at"),

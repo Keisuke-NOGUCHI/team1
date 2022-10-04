@@ -49,11 +49,11 @@
             <label for="textInput">内容</label>
             <textarea id="textInput" name="text" cols="30" rows="10" ></textarea>
           </div>
-          <!--
+          <!-- -->
           <div>
             <label for="image">画像</label>
             <input type="file" name="image" accept="image/jpeg, image/png">
-          </div>-->
+          </div><!-- -->
         </div>
         <div>
           <button type="submit" id="button">投稿</button>
@@ -68,7 +68,7 @@
             {{ article.body | linebreaksbr }}
             <diV>
               {% if article.image %}
-              <img src="{{ article.image.url }}" style="width:300px;height:auto">
+              <img src="{{ article.image.url }}" style="width: 100px;height:auto">
               {% endif %}
             </diV>
             <small>[{{ article.posted_at }}]</small>
