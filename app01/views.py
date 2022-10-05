@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
+from matplotlib import image
+from numpy import imag
 from app01.models import Article, Comment
 from .forms import Image
 
@@ -48,7 +50,7 @@ def index(request):
 		article = Article(title=request.POST["title"],body=request.POST["text"])
 		#article.image=request.POST['image']
 		if form.is_valid():
-			article.image=request.FILES['image']
+			article.image=request.FILES.get('image')
 		else:
 			article.image=False
 		article.save()
