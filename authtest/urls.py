@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+#画像
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -11,3 +14,6 @@ urlpatterns = [
     path('mypage/', views.mypage, name='mypage'),
     path('chat/', views.mypage, name='chat'),
 ]
+
+#画像
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

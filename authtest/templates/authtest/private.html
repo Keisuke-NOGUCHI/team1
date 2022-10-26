@@ -18,13 +18,13 @@
             <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
             <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
             <div id="h-menu_content">
-              <ul>
+                <ul>
                 <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
                 <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
                 <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
                 <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
                 <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
-              </ul>
+                </ul>
             </div>
           </div>
         </div>
@@ -42,23 +42,44 @@
 
         <p>ユーザー名: {{ user.userinfo.username }}</p>
         <p>年齢: {{ user.userinfo.age }}歳</p>
+        {{ user.userinfo.icon }}
+        <img src="../../../media/{{ user.userinfo.icon }}" style="width: 100px;height:auto">
         
         <br>
 
-        <form action="{% url 'priv' %}" method="POST">
+        <form action="{% url 'priv' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-
+            {{ form.as_p }}
             <input id="username" type="text" value={{ user.userinfo.username }} name="username"><br>
-            <input id="number" type="number" value={{ user.userinfo.age }} name="age" >
+            <input id="number" type="number" value={{ user.userinfo.age }} name="age" ><br>
+            <input type="file" name="icon" accept="image/jpeg, image/png">
 
             
             <button id="submit" type="submit">編集</button>
         </form>
 
+        <a href="{% url 'signup' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p>
+
         <br>
         
 
         <p><a href="{% url 'home' %}">ホームに戻る</a></p>
+
+        {{ timetableform.as_p }}
+
+        {{ user.userinfo.timetable.mon1.s_name }}
+
+        {% for field in timetableform %}
+        
+
+    
+        {% if forloop.counter == 1 %}
+        {{ field }}
+        {% endif %}
+        {% if forloop.counter == 2%}
+        {{ field }}
+        {% endif %}
+        {% endfor %}
 
         <table>
             <tbody>
@@ -73,320 +94,109 @@
                 <tr>
                     <th>1</th>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.mon1 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.tue1 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.wed1 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.thi1 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.fri1 }}
                     </td>
                 </tr>
                 <tr>
                     <th>2</th>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.mon2 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.tue2 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.wed2 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.thi2 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.fri2 }}
                     </td>
                 </tr>
                 <tr>
                     <th>3</th>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.mon3 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.tue3 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.wed3 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.thi3 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.fri3 }}
                     </td>
                 </tr>
                 <tr>
                     <th>4</th>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.mon4 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.tue4 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.wed4 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.thi4 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.fri4 }}
                     </td>
                 </tr>
                 <tr>
                     <th>5</th>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.mon5 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.tue5 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.wed5 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.thi5 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.fri5 }}
                     </td>
                 </tr>
                 <tr>
                     <th>6</th>
-                    
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.mon6 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.tue6 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.wed6 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.thi6 }}
                     </td>
                     <td>
-                        <select name="subject">
-                            <option value="none" selected>-</option>
-                            <option value="国語">国語</option>
-                            <option value="数学">数学</option>
-                            <option value="英語">英語</option>
-                            <option value="理科">理科</option>
-                            <option value="社会">社会</option>
-                        </select>
+                        {{ timetableform.fri6 }}
                     </td>
                 </tr>
                 

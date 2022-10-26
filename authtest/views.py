@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from accounts.models import Person
-from .form import SignUpForm
+from accounts.models import Person, TimeTable
+# from app01.forms import Image
+from .form import SignUpForm, Icon, TimeTableForm
 # Create your views here.
 def home(request):
     return render(request, 'authtest/home.html')
@@ -9,11 +10,20 @@ def home(request):
 @login_required
 def private_page(request):
     if request.method == "POST":
+        form = Icon(request.POST, request.FILES)
         p = request.user.userinfo
+        if form.is_valid():
+            p.icon=request.FILES.get('icon')
+        else:
+            p.icon=False
         p.age = request.POST["age"]
         p.username = request.POST["username"]
         p.save()
-    return render(request, 'authtest/private.html', {})
+    else:
+        form = Icon()
+        timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
+    timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
+    return render(request, 'authtest/private.html', {'form': form, 'timetableform': timetableform})
 
 def public_page(request):
     return render(request, 'authtest/public.html', {})

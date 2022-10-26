@@ -48,7 +48,7 @@ def index(request):
 		article = Article(title=request.POST["title"],body=request.POST["text"])
 		#article.image=request.POST['image']
 		if form.is_valid():
-			article.image=request.FILES['image']
+			article.image=request.FILES.get('image')
 		else:
 			article.image=False
 		article.save()
