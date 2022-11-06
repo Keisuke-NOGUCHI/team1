@@ -4,31 +4,46 @@
     <head>
         <meta charset="UTF-8">
         <title>プロフィール</title>
+        <link rel="stylesheet" href="{% static 'css/private.css' %}">
         <link rel="stylesheet" href="{% static 'css/header.css' %}">
+        <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../media/images/app_icon.png"> 
     </head>
 
     <header>
         <div class="inner">
-          <div class="inner_color">
+            <div class="inner_color">
             <a href="{% url 'home' %}"><h2>アプリ名</h2></a>
-          </div>
+        </div>
         
-          <div class="h-menu">
+        <div class="h-menu">
             <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
             <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
             <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
             <div id="h-menu_content">
                 <ul>
-                <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
-                <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
-                <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
+                <li>
+                    <a href="{% url 'top' %}">
+                    <img src="..\media\images\top.png" width="48" height="48">
+                    <p>掲示板</p></a>
+                </li>
+                <li>
+                    <a href="{% url 'mypage' %}">
+                    <img src="..\media\images\時間割.png" width="48" height="48">
+                    <p>時間割</p></a>
+                </li>
+                <li>
+                    <a href="{% url 'pub' %}">
+                        <img src="..\media\images\ondemando.png" width="48" height="48">
+                        <p>オンデマンド</p></a>
+                    </li>
                 <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
                 <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
                 </ul>
             </div>
-          </div>
         </div>
-      </header>
+        </div>
+    </header>
 
     <body>
         <h1>～アプリ名～</h1>
@@ -42,17 +57,139 @@
 
         <p>ユーザー名: {{ user.userinfo.username }}</p>
         <p>年齢: {{ user.userinfo.age }}歳</p>
-        {{ user.userinfo.icon }}
-        <img src="../../../media/{{ user.userinfo.icon }}" style="width: 100px;height:auto">
+        {% comment %} {{ user.userinfo.icon }} {% endcomment %}
+        <img src="../../../media/{{ user.userinfo.icon }}" class="display_icon" style="width: 100px;height:auto">
         
         <br>
 
         <form action="{% url 'priv' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% comment %} {{ form.as_p }} {% endcomment %}
             <input id="username" type="text" value={{ user.userinfo.username }} name="username"><br>
             <input id="number" type="number" value={{ user.userinfo.age }} name="age" ><br>
-            <input type="file" name="icon" accept="image/jpeg, image/png">
+            <input type="file" value="../../../media/"{{ user.userinfo.icon }} name="icon" accept="image/jpeg, image/png">
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>〇</th>
+                        <th>月</th>
+                        <th>火</th>
+                        <th>水</th>
+                        <th>木</th>
+                        <th>金</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <td>
+                            {{ timetableform.mon1 }}
+                        </td>
+                        <td>
+                            {{ timetableform.tue1 }}
+                        </td>
+                        <td>
+                            {{ timetableform.wed1 }}
+                        </td>
+                        <td>
+                            {{ timetableform.thu1 }}
+                        </td>
+                        <td>
+                            {{ timetableform.fri1 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>
+                            {{ timetableform.mon2 }}
+                        </td>
+                        <td>
+                            {{ timetableform.tue2 }}
+                        </td>
+                        <td>
+                            {{ timetableform.wed2 }}
+                        </td>
+                        <td>
+                            {{ timetableform.thu2 }}
+                        </td>
+                        <td>
+                            {{ timetableform.fri2 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>
+                            {{ timetableform.mon3 }}
+                        </td>
+                        <td>
+                            {{ timetableform.tue3 }}
+                        </td>
+                        <td>
+                            {{ timetableform.wed3 }}
+                        </td>
+                        <td>
+                            {{ timetableform.thu3 }}
+                        </td>
+                        <td>
+                            {{ timetableform.fri3 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>
+                            {{ timetableform.mon4 }}
+                        </td>
+                        <td>
+                            {{ timetableform.tue4 }}
+                        </td>
+                        <td>
+                            {{ timetableform.wed4 }}
+                        </td>
+                        <td>
+                            {{ timetableform.thu4 }}
+                        </td>
+                        <td>
+                            {{ timetableform.fri4 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>5</th>
+                        <td>
+                            {{ timetableform.mon5 }}
+                        </td>
+                        <td>
+                            {{ timetableform.tue5 }}
+                        </td>
+                        <td>
+                            {{ timetableform.wed5 }}
+                        </td>
+                        <td>
+                            {{ timetableform.thu5 }}
+                        </td>
+                        <td>
+                            {{ timetableform.fri5 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>6</th>
+                        <td>
+                            {{ timetableform.mon6 }}
+                        </td>
+                        <td>
+                            {{ timetableform.tue6 }}
+                        </td>
+                        <td>
+                            {{ timetableform.wed6 }}
+                        </td>
+                        <td>
+                            {{ timetableform.thu6 }}
+                        </td>
+                        <td>
+                            {{ timetableform.fri6 }}
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
 
             
             <button id="submit" type="submit">編集</button>
@@ -65,22 +202,18 @@
 
         <p><a href="{% url 'home' %}">ホームに戻る</a></p>
 
-        {{ timetableform.as_p }}
+        {% comment %} {{ timetableform.as_p }} {% endcomment %}
 
         {{ user.userinfo.timetable.mon1.s_name }}
 
-        {% for field in timetableform %}
+
+
+        
         
 
-    
-        {% if forloop.counter == 1 %}
-        {{ field }}
-        {% endif %}
-        {% if forloop.counter == 2%}
-        {{ field }}
-        {% endif %}
-        {% endfor %}
+        {{ user.userinfo.timetable.mon1 }}
 
+        
         <table>
             <tbody>
                 <tr>
@@ -94,115 +227,132 @@
                 <tr>
                     <th>1</th>
                     <td>
-                        {{ timetableform.mon1 }}
+                        {{ user.userinfo.timetable.mon1 }}
                     </td>
                     <td>
-                        {{ timetableform.tue1 }}
+                        {{ user.userinfo.timetable.tue1 }}
                     </td>
                     <td>
-                        {{ timetableform.wed1 }}
+                        {{ user.userinfo.timetable.wed1 }}
                     </td>
                     <td>
-                        {{ timetableform.thi1 }}
+                        {{ user.userinfo.timetable.thu1 }}
                     </td>
                     <td>
-                        {{ timetableform.fri1 }}
+                        {{ user.userinfo.timetable.fri1 }}
                     </td>
                 </tr>
                 <tr>
                     <th>2</th>
                     <td>
-                        {{ timetableform.mon2 }}
+                        {{ user.userinfo.timetable.mon2 }}
                     </td>
                     <td>
-                        {{ timetableform.tue2 }}
+                        {{ user.userinfo.timetable.tue2 }}
                     </td>
                     <td>
-                        {{ timetableform.wed2 }}
+                        {{ user.userinfo.timetable.wed2 }}
                     </td>
                     <td>
-                        {{ timetableform.thi2 }}
+                        {{ user.userinfo.timetable.thu2 }}
                     </td>
                     <td>
-                        {{ timetableform.fri2 }}
+                        {{ user.userinfo.timetable.fri2 }}
                     </td>
                 </tr>
                 <tr>
                     <th>3</th>
                     <td>
-                        {{ timetableform.mon3 }}
+                        {{ user.userinfo.timetable.mon3 }}
                     </td>
                     <td>
-                        {{ timetableform.tue3 }}
+                        {{ user.userinfo.timetable.tue3 }}
                     </td>
                     <td>
-                        {{ timetableform.wed3 }}
+                        {{ user.userinfo.timetable.wed3 }}
                     </td>
                     <td>
-                        {{ timetableform.thi3 }}
+                        {{ user.userinfo.timetable.thu3 }}
                     </td>
                     <td>
-                        {{ timetableform.fri3 }}
+                        {{ user.userinfo.timetable.fri3 }}
                     </td>
                 </tr>
                 <tr>
                     <th>4</th>
                     <td>
-                        {{ timetableform.mon4 }}
+                        {{ user.userinfo.timetable.mon4 }}
                     </td>
                     <td>
-                        {{ timetableform.tue4 }}
+                        {{ user.userinfo.timetable.tue4 }}
                     </td>
                     <td>
-                        {{ timetableform.wed4 }}
+                        {{ user.userinfo.timetable.wed4 }}
                     </td>
                     <td>
-                        {{ timetableform.thi4 }}
+                        {{ user.userinfo.timetable.thu4 }}
                     </td>
                     <td>
-                        {{ timetableform.fri4 }}
+                        {{ user.userinfo.timetable.fri4 }}
                     </td>
                 </tr>
                 <tr>
                     <th>5</th>
                     <td>
-                        {{ timetableform.mon5 }}
+                        {{ user.userinfo.timetable.mon5 }}
                     </td>
                     <td>
-                        {{ timetableform.tue5 }}
+                        {{ user.userinfo.timetable.tue5 }}
                     </td>
                     <td>
-                        {{ timetableform.wed5 }}
+                        {{ user.userinfo.timetable.wed5 }}
                     </td>
                     <td>
-                        {{ timetableform.thi5 }}
+                        {{ user.userinfo.timetable.thu5 }}
                     </td>
                     <td>
-                        {{ timetableform.fri5 }}
+                        {{ user.userinfo.timetable.fri5 }}
                     </td>
                 </tr>
                 <tr>
                     <th>6</th>
                     <td>
-                        {{ timetableform.mon6 }}
+                        {{ user.userinfo.timetable.mon6 }}
                     </td>
                     <td>
-                        {{ timetableform.tue6 }}
+                        {{ user.userinfo.timetable.tue6 }}
                     </td>
                     <td>
-                        {{ timetableform.wed6 }}
+                        {{ user.userinfo.timetable.wed6 }}
                     </td>
                     <td>
-                        {{ timetableform.thi6 }}
+                        {{ user.userinfo.timetable.thu6 }}
                     </td>
                     <td>
-                        {{ timetableform.fri6 }}
+                        {{ user.userinfo.timetable.fri6 }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>6</th>
+                    <td>
+                        {{ user.userinfo.timetable.mon6 }}
+                    </td>
+                    <td>
+                        {{ user.userinfo.timetable.tue6 }}
+                    </td>
+                    <td>
+                        {{ user.userinfo.timetable.wed6 }}
+                    </td>
+                    <td>
+                        {{ user.userinfo.timetable.thu6 }}
+                    </td>
+                    <td>
+                        {{ user.userinfo.timetable.fri6 }}
                     </td>
                 </tr>
                 
             </tbody>
         </table>
-
 
     </body>
 </html>

@@ -170,3 +170,10 @@ input:checked ~ .h-menu_icon .hamburger-icon::after{
   #h-menu_content li a:hover {
       background: #455b6d;
   }
+
+.icon {
+    height: 104px;
+    width: 104px;
+    border-radius: 24px;
+    background-color: #fefefe;
+}

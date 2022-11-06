@@ -27,6 +27,7 @@ class TimeTable(models.Model):
     tue6 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)
     wed1 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)
     wed2 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)
+    wed3 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)
     wed4 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)
     wed5 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)
     wed6 = models.ForeignKey(Subject, verbose_name="科目名", on_delete=models.CASCADE, related_name="+", null=True)

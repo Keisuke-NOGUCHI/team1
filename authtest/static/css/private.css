@@ -1,0 +1,16 @@
+.display_icon {
+    background: red;
+    transition: all 5s ease;
+}
+
+.display_icon:hover {
+    transform: rotate(3600deg);
+}
+
+p {
+    background: red;
+}
+
+p:checked {
+    background-color: aqua;
+}

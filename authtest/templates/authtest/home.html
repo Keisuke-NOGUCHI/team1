@@ -23,8 +23,7 @@
             <li>
               {% if user.is_authenticated %}
               {% if user.userinfo.icon %}
-              <p>ユーザー名: {{ user.userinfo.username }}</p>
-              <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+              <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
               {% else %}
               <img src="{% static 'images/user_icon.png' %}" class="user-icon">
               {% endif %}

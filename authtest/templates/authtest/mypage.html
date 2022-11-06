@@ -43,11 +43,10 @@
     {% endif %}
     <a href="{% url 'logout' %}">ログアウト</a>
 
-    <table class="timetable" border="5px">
+    <table class="timetable" boder="5px">
         <tbody>
-            <tr><h3>時間割</h3></tr>
             <tr>
-                <th>　</th>
+                <th>〇</th>
                 <th>月</th>
                 <th>火</th>
                 <th>水</th>
@@ -57,110 +56,127 @@
             <tr>
                 <th>1</th>
                 <td>
-                    <p>理科</p>
+                    {{ user.userinfo.timetable.mon1 }}
                 </td>
                 <td>
-                    <p>国語</p>
+                    {{ user.userinfo.timetable.tue1 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.wed1 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.thu1 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.fri1 }}
                 </td>
             </tr>
             <tr>
                 <th>2</th>
                 <td>
-                    <p>数学</p>
+                    {{ user.userinfo.timetable.mon2 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.tue2 }}
                 </td>
                 <td>
-                    <p>英語</p>
+                    {{ user.userinfo.timetable.wed2 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.thu2 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.fri2 }}
                 </td>
             </tr>
             <tr>
                 <th>3</th>
                 <td>
-                    <p>英語</p>
+                    {{ user.userinfo.timetable.mon3 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.tue3 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.wed3 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.thu3 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.fri3 }}
                 </td>
             </tr>
             <tr>
                 <th>4</th>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.mon4 }}
                 </td>
                 <td>
-                    <p>社会</p>
+                    {{ user.userinfo.timetable.tue4 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.wed4 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.thu4 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.fri4 }}
                 </td>
             </tr>
             <tr>
                 <th>5</th>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.mon5 }}
                 </td>
                 <td>
-                    <p>理科</p>
+                    {{ user.userinfo.timetable.tue5 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.wed5 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.thu5 }}
                 </td>
                 <td>
-                    <p>英語</p>
+                    {{ user.userinfo.timetable.fri5 }}
                 </td>
             </tr>
             <tr>
                 <th>6</th>
-                
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.mon6 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.tue6 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.wed6 }}
                 </td>
                 <td>
-                    <p>国語</p>
+                    {{ user.userinfo.timetable.thu6 }}
                 </td>
                 <td>
-                    <p>-</p>
+                    {{ user.userinfo.timetable.fri6 }}
+                </td>
+            </tr>
+            <tr>
+                <th>6</th>
+                <td>
+                    {{ user.userinfo.timetable.mon6 }}
+                </td>
+                <td>
+                    {{ user.userinfo.timetable.tue6 }}
+                </td>
+                <td>
+                    {{ user.userinfo.timetable.wed6 }}
+                </td>
+                <td>
+                    {{ user.userinfo.timetable.thu6 }}
+                </td>
+                <td>
+                    {{ user.userinfo.timetable.fri6 }}
                 </td>
             </tr>
             
