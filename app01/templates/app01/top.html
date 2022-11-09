@@ -42,6 +42,7 @@
 
       <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <h3>学籍番号: {{ user }}</h3>
         <div>
           <div>
             <label for="titleInput">タイトル</label>
@@ -67,6 +68,7 @@
         {% for article in articles %}
           <div class="article">
             <h5>title:{{ article.title }}</h5>
+            <p>投稿者: {{ article.user }}</p>
             {{ article.body | linebreaksbr }}
             <diV>
               {% if article.image %}

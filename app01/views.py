@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from django.http import Http404
 from app01.models import Article, Comment
 from .forms import Image
-
+from django.core.exceptions import PermissionDenied
+from accounts.models import Person
+from django.contrib.auth.models import User
 # Create your views here.
 
 def root(request):
@@ -46,7 +48,10 @@ def index(request):
 	if request.method == 'POST':
 		form = Image(request.POST)
 		article = Article(title=request.POST["title"],body=request.POST["text"])
-		#article.image=request.POST['image']
+		#article.user=Person.objects.get(pk=1)
+		#article.user = Person.user
+		article.user = request.user
+		#article.is_owner = article.is_owner(request.user)
 		if form.is_valid():
 			article.image=request.FILES.get('image')
 		else:
@@ -68,6 +73,9 @@ def update(request, article_id):
 		article = Article.objects.get(pk=article_id)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
+	#if article.user != Person.objects.get(pk=1):
+	if article.is_owner(request.user) == False:
+		raise PermissionDenied
 	if request.method == 'POST':
 		article.title = request.POST['title']
 		article.body = request.POST['text'] 

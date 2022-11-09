@@ -18,14 +18,15 @@ def private_page(request):
             p.icon=False
         p.age = request.POST["age"]
         p.username = request.POST["username"]
-        p.save()
         
         #ここから時間割
+        timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
         
+        p.save()
     else:
         form = Icon()
         timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
-    timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
+    
     return render(request, 'authtest/private.html', {'form': form, 'timetableform': timetableform})
 
 def public_page(request):

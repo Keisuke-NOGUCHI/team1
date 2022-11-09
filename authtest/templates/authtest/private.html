@@ -58,7 +58,10 @@
         <p>ユーザー名: {{ user.userinfo.username }}</p>
         <p>年齢: {{ user.userinfo.age }}歳</p>
         {% comment %} {{ user.userinfo.icon }} {% endcomment %}
-        <img src="../../../media/{{ user.userinfo.icon }}" class="display_icon" style="width: 100px;height:auto">
+        <input type="checkbox" id="trigger">
+        <label for="trigger">
+            <img src="../../../media/{{ user.userinfo.icon }}" class="display_icon" style="width: 100px;height:auto">
+        </label>
         
         <br>
 
@@ -205,11 +208,6 @@
         {% comment %} {{ timetableform.as_p }} {% endcomment %}
 
         {{ user.userinfo.timetable.mon1.s_name }}
-
-
-
-        
-        
 
         {{ user.userinfo.timetable.mon1 }}
 
