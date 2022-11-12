@@ -10,6 +10,7 @@ class Article(models.Model):
     like = models.IntegerField(default=0)
     image = models.ImageField(upload_to='media/images',null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    anonymity = models.BooleanField(default=False, blank=True, null=True)
 
     def publish(self):
         self.published_at = timezone.now()
@@ -28,3 +29,11 @@ class Comment(models.Model):
     text = models.TextField()
     posted_at = models.DateTimeField(default=timezone.now)
     article = models.ForeignKey(Article, related_name='comments', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='media/comment',null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    anonymity = models.BooleanField(default=False, blank=True, null=True)
+
+    def is_owner(self, user):
+        if self.user.id == user.id:
+            return True
+        return False

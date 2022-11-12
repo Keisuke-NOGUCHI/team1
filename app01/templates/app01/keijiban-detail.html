@@ -50,19 +50,29 @@
         <br>
         
         <div>
-            <h3>title:</h3>
+          <h3>投稿者:</h3>
+            {% if article.anonymity %}
+            <p>{{ article.user }}</p>
+            {% else %}
+            <p>匿名</p>
+            {% endif %}
+          
+            <h3>タイトル:</h3>
             <p>{{ article.title }}</p>
             <h3>内容</h3>
             <div>
                {{ article.body | linebreaksbr }}
             </div>
+            <h3>画像:</h3>
             <diV>
               {% if article.image %}
               <img src="{{ article.image.url }}" style="width: 300px;height:auto">
+              {% else %}
               {% endif %}
+              <p>画像がありません</p>
             </diV>
             <h3>日時</h3>
-            <small>{{ article.posted_at }}</small>
+            <small>[{{ article.posted_at }}]</small>
         </div>
         <p>
             <a href="{% url 'index' %}" id="Top">Top</a>
@@ -77,25 +87,44 @@
         {% if comments %}
         {% for comment in comments %}
         <div>
-            <div>
-                <small>[{{ comment.posted_at }}]</small>
-            </div>
+          {% if comment.anonymity %}
+          <p>投稿者: {{ comment.user }}</p>
+          {% else %}
+          <p>投稿者: 匿名</p>
+          {% endif %}
             <div>
                 {{ comment.text | linebreaksbr }}
             </div>
+            <div>
+              {% if comment.image %}
+              <img src="{{ comment.image.url }}" style="width: 100px;height:auto">
+              {% endif %}
+            </div>
+          <div>
+            <small>[{{ comment.posted_at }}]</small>
+          </div>
+          <hr>
         </div>
         {% endfor %}
         {% else %}
         <p>コメントがありません。</p>
         {% endif %}
         
-        <form action="{% url 'detail' article.id %}" method="post">
+        <form action="{% url 'detail' article.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            <div>
             <diV>
                 <label for="textInput">Text</label>
                 <textarea id="titleInput" name="text" rows="3"></textarea>
             </diV>
             <div>
+              <label for="image">画像</label>
+              <input type="file" name="image" accept="image/jpeg, image/png">
+            </div>
+            <div>
+              <label for="checkbox">匿名</label>
+              <input type="checkbox" name="checkbox">
+            </div>
                 <button type="submit">Submit</button>
             </div>
         </form>
