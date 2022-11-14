@@ -42,6 +42,7 @@
 
       <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <h3>学籍番号: {{ user }}</h3>
         <div>
           <div>
             <label for="titleInput">タイトル</label>
@@ -51,11 +52,15 @@
             <label for="textInput">内容</label>
             <textarea id="textInput" name="text" cols="30" rows="10" ></textarea>
           </div>
-          <!-- -->
           <div>
             <label for="image">画像</label>
             <input type="file" name="image" accept="image/jpeg, image/png">
-          </div><!-- -->
+          </div>
+          <div>
+            <label for="checkbox">匿名</label>
+            <input type="checkbox" name="checkbox">
+          </div>
+
         </div>
         <div>
           <button type="submit" id="button">投稿</button>
@@ -67,6 +72,11 @@
         {% for article in articles %}
           <div class="article">
             <h5>title:{{ article.title }}</h5>
+            {% if article.anonymity %}
+            <p>投稿者: {{ article.user }}</p>
+            {% else %}
+            <p>投稿者: 匿名</p>
+            {% endif %}
             {{ article.body | linebreaksbr }}
             <diV>
               {% if article.image %}
