@@ -17,7 +17,7 @@ body {
     position: absolute;
 }
 
-.inner_color img {
+.inner_color img, h2 {
     position: absolute;
     color: aliceblue;
     left: 50%;

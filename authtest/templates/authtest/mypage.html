@@ -37,9 +37,9 @@
     <p>学籍番号: {{ user.username }}</p>
     <p>ユーザー名: {{ user.userinfo.username }}</p>
     {% if user.userinfo.icon %}
-    <img src="{{ user.userinfo.icon }}" class="user-icon">
+    <img src="../../../media/{{ user.userinfo.icon }}" class="u-icon" height="64px">
     {% else %}
-    <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+    <img src="{% static 'images/user_icon.png' %}" class="u-icon">
     {% endif %}
     <a href="{% url 'logout' %}">ログアウト</a>
 
