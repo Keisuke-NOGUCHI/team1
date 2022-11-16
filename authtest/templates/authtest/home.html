@@ -5,12 +5,14 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="icon" href="{% static '../../../media/images/app_icon.png' %}">
+    <title>Compass</title
   </head>
 
   <header>
     <div class="inner">
       <div class="inner_color">
-        <a href="{% url 'home' %}"><h2>アプリ名</h2></a>
+        <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン黒.png" height="32px"></a>
         <p></p>
       </div>
     
@@ -23,8 +25,7 @@
             <li>
               {% if user.is_authenticated %}
               {% if user.userinfo.icon %}
-              <p>ユーザー名: {{ user.userinfo.username }}</p>
-              <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+              <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
               {% else %}
               <img src="{% static 'images/user_icon.png' %}" class="user-icon">
               {% endif %}
@@ -57,5 +58,9 @@
     <div class="rank">
       <a href="{% url 'rank' %}" id="rank"><img src="..\media\images\rank.png" width="128" height="128"><p>ランキング</p></a>
     </div>
+    <div class="box1"></diV>
+    <div class="box2"></diV>
+    <div class="box3"></diV>
+    <div class="box4"></diV>
   </body>
 </html>

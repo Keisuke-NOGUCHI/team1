@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from accounts.models import Person, TimeTable
+from accounts.models import Person, TimeTable, Subject
 # from app01.forms import Image
 from .form import SignUpForm, Icon, TimeTableForm
 # Create your views here.
@@ -18,11 +18,15 @@ def private_page(request):
             p.icon=False
         p.age = request.POST["age"]
         p.username = request.POST["username"]
+        
+        #ここから時間割
+        timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
+        
         p.save()
     else:
         form = Icon()
         timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
-    timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
+    
     return render(request, 'authtest/private.html', {'form': form, 'timetableform': timetableform})
 
 def public_page(request):

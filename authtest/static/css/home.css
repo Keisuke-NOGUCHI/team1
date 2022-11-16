@@ -16,3 +16,15 @@
 .rank img {
     position: absolute;
 }
+
+.box1, .box2, .box3, .box4 {
+    height: 100px;
+    width: 100px;
+    background: red;
+}
+
+.box1:hover, .box2:hover, .box3:hover, .box4:hover {
+    height: 100px;
+    width: 100px;
+    background: blue;
+}

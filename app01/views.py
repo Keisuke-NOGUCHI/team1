@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import Http404
 from app01.models import Article, Comment
-from .forms import Image
-
+from .forms import Image, Comment_Image
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
+from accounts.models import Person
+from django.contrib.auth.models import User
 # Create your views here.
 
 def root(request):
@@ -46,7 +49,12 @@ def index(request):
 	if request.method == 'POST':
 		form = Image(request.POST)
 		article = Article(title=request.POST["title"],body=request.POST["text"])
-		#article.image=request.POST['image']
+		article.user = request.user
+		if "checkbox" in request.POST:
+			article.anonymity = False
+		else:
+			article.anonymity = True
+						
 		if form.is_valid():
 			article.image=request.FILES.get('image')
 		else:
@@ -68,9 +76,16 @@ def update(request, article_id):
 		article = Article.objects.get(pk=article_id)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
+	#if article.user != Person.objects.get(pk=1):
+	if article.is_owner(request.user) == False:
+		raise PermissionDenied
 	if request.method == 'POST':
 		article.title = request.POST['title']
 		article.body = request.POST['text'] 
+		if "checkbox" in request.POST:
+			article.anonymity = False
+		else:
+			article.anonymity = True
 		article.save()
 		return redirect(detail, article_id)
 	context = {
@@ -94,6 +109,16 @@ def detail(request, article_id):
 
 	if request.method == 'POST':
 		comment = Comment(article=article, text=request.POST['text'])
+		comment.user = request.user
+		if "checkbox" in request.POST:
+			comment.anonymity = False
+		else:
+			comment.anonymity = True
+		form = Comment_Image(request.POST)
+		if form.is_valid():
+			comment.image=request.FILES.get('image')
+		else:
+			comment.image=False
 		comment.save()
 	
 	context = {
@@ -117,3 +142,30 @@ def rank(request):
 		#"articles": Article.objects.all()
 	}
 	return render(request, 'app01/rank.html', context)
+
+"""
+def comment_delete(comment_id):
+	comment = get_object_or_404(Comment, id=comment_id)
+	comment.delete()
+	return redirect(index)
+"""
+
+"""
+def comment_delete(comment_id):
+	try:
+		comment = Comment.objects.get(pk=comment_id)
+	except Comment.DoesNotExist:
+		raise Http404("Comment dose not exist")
+	comment.delete()
+
+	try:
+		article = comment.article
+	except Article.DoesNotExist:
+		raise Http404("Article does not exist")
+	context = {
+		"article": article,
+		"comments": article.comments.order_by("-posted_at")
+		}
+	return render('app01/keijiban-detail.html', context)
+
+"""
