@@ -120,7 +120,7 @@ def detail(request, article_id):
 		else:
 			comment.image=False
 		comment.save()
-	
+
 	context = {
 		"article": article,
 		"comments": article.comments.order_by("-posted_at")
