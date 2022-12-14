@@ -9,6 +9,7 @@ def home(request):
 
 @login_required
 def private_page(request):
+    timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
     if request.method == "POST":
         form = Icon(request.POST, request.FILES)
         p = request.user.userinfo
@@ -20,12 +21,9 @@ def private_page(request):
         p.username = request.POST["username"]
         
         #ここから時間割
-        timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
-        
         p.save()
     else:
         form = Icon()
-        timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
     
     return render(request, 'authtest/private.html', {'form': form, 'timetableform': timetableform})
 

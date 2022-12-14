@@ -52,7 +52,7 @@
         <div>
           <h3>投稿者:</h3>
             {% if article.anonymity %}
-            <p>{{ article.user }}</p>
+            <p>{{ article.user }}[{{ article.user.userinfo.username}}]</p>
             {% else %}
             <p>匿名</p>
             {% endif %}
@@ -88,7 +88,7 @@
         {% for comment in comments %}
         <div>
           {% if comment.anonymity %}
-          <p>投稿者: {{ comment.user }}</p>
+          <p>投稿者: {{ comment.user }}[{{ comment.user.userinfo.username}}]</p>
           {% else %}
           <p>投稿者: 匿名</p>
           {% endif %}
@@ -100,9 +100,17 @@
               <img src="{{ comment.image.url }}" style="width: 100px;height:auto">
               {% endif %}
             </div>
+            <div>
+              <a href="{% url 'comment_like' comment.id %}">
+                <img src="..\media\images\heart.png" width="16" height="16">
+              </a>
+                {{ comment.like }}
+              
+            </div>
           <div>
             <small>[{{ comment.posted_at }}]</small>
           </div>
+          <a href="{% url 'comment_detail' comment.id %}">詳細</a>
           <hr>
         </div>
         {% endfor %}

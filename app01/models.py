@@ -29,6 +29,7 @@ class Comment(models.Model):
     text = models.TextField()
     posted_at = models.DateTimeField(default=timezone.now)
     article = models.ForeignKey(Article, related_name='comments', on_delete=models.CASCADE)
+    like = models.IntegerField(default=0)
     image = models.ImageField(upload_to='media/comment',null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     anonymity = models.BooleanField(default=False, blank=True, null=True)

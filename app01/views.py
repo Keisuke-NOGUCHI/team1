@@ -120,7 +120,7 @@ def detail(request, article_id):
 		else:
 			comment.image=False
 		comment.save()
-	
+
 	context = {
 		"article": article,
 		"comments": article.comments.order_by("-posted_at")
@@ -135,6 +135,57 @@ def like(request, article_id):
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
 	return redirect(index)
+
+def comment_detail(request, comment_id):
+	try:
+		comment = Comment.objects.get(pk=comment_id)
+	except Comment.DoesNotExist:
+		raise Http404("Comment does not exist")
+
+	context = {
+		"comment": comment,
+		}
+	return render(request, 'app01/comment-detail.html', context)
+
+def comment_delete(request, comment_id):
+	try:
+		comment = Comment.objects.get(pk=comment_id)
+	except Comment.DoesNotExist:
+		raise Http404("Comment dose not exist")
+	comment.delete()
+	#return redirect(index)
+	return redirect(detail, comment.article_id)
+
+def comment_update(request, comment_id):
+	try:
+		comment = Comment.objects.get(pk=comment_id)
+	except Comment.DoesNotExist:
+		raise Http404("Comment does not exist")
+
+	if comment.is_owner(request.user) == False:
+		raise PermissionDenied
+	if request.method == 'POST':
+		comment.text = request.POST['text'] 
+		if "checkbox" in request.POST:
+			comment.anonymity = False
+		else:
+			comment.anonymity = True
+		comment.save()
+
+		return redirect(comment_detail, comment_id)
+	context = {
+		"comment": comment
+	}
+	return render(request, 'app01/Comment-edit.html', context)
+
+def comment_like(request, comment_id):
+	try:
+		comment = Comment.objects.get(pk=comment_id)
+		comment.like += 1
+		comment.save()
+	except Comment.DoesNotExist:
+		raise Http404("Comment does not exist")
+	return redirect(detail, comment.article.id)
 
 def rank(request):
 	context = {
