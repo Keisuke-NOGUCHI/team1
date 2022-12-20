@@ -51,92 +51,32 @@
         
         <div>
           <h3>投稿者:</h3>
-            {% if article.anonymity %}
-            <p>{{ article.user }}[{{ article.user.userinfo.username}}]</p>
+            {% if comment.anonymity %}
+            <p>{{ comment.user }}</p>
             {% else %}
             <p>匿名</p>
             {% endif %}
           
-            <h3>タイトル:</h3>
-            <p>{{ article.title }}</p>
-            <h3>内容</h3>
             <div>
-               {{ article.body | linebreaksbr }}
+                <h3>内容:</h3>
+               {{ comment.text | linebreaksbr }}
             </div>
             <h3>画像:</h3>
             <diV>
-              {% if article.image %}
-              <img src="{{ article.image.url }}" style="width: 300px;height:auto">
+              {% if comment.image %}
+              <img src="{{ comment.image.url }}" style="width: 300px;height:auto">
               {% else %}
               {% endif %}
               <p>画像がありません</p>
             </diV>
             <h3>日時</h3>
-            <small>[{{ article.posted_at }}]</small>
+            <small>[{{ comment.posted_at }}]</small>
         </div>
         <p>
             <a href="{% url 'index' %}" id="Top">Top</a>
-            <a href="{% url 'rank' %}" id="rank">Rank</a>
-            <a href="{% url 'update' article.id %}" id="edit">編集</a>
-            <a href="{% url 'delete' article.id %}" id="delete">削除</a>
-        </p>
-        
-        <hr>
-        <h3>コメント</h3>
-
-        {% if comments %}
-        {% for comment in comments %}
-        <div>
-          {% if comment.anonymity %}
-          <p>投稿者: {{ comment.user }}[{{ comment.user.userinfo.username}}]</p>
-          {% else %}
-          <p>投稿者: 匿名</p>
-          {% endif %}
-            <div>
-                {{ comment.text | linebreaksbr }}
-            </div>
-            <div>
-              {% if comment.image %}
-              <img src="{{ comment.image.url }}" style="width: 100px;height:auto">
-              {% endif %}
-            </div>
-            <div>
-              <a href="{% url 'comment_like' comment.id %}">
-                <img src="..\media\images\heart.png" width="16" height="16">
-              </a>
-                {{ comment.like }}
-              
-            </div>
-          <div>
-            <small>[{{ comment.posted_at }}]</small>
-          </div>
-          <a href="{% url 'comment_detail' comment.id %}">詳細</a>
-          <hr>
-        </div>
-        {% endfor %}
-        {% else %}
-        <p>コメントがありません。</p>
-        {% endif %}
-        
-        <form action="{% url 'detail' article.id %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div>
-            <diV>
-                <label for="textInput">Text</label>
-                <textarea id="titleInput" name="text" rows="3"></textarea>
-            </diV>
-            <div>
-              <label for="image">画像</label>
-              <input type="file" name="image" accept="image/jpeg, image/png">
-            </div>
-            <div>
-              <label for="checkbox">匿名</label>
-              <input type="checkbox" name="checkbox">
-            </div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
-
-        
+            <a href="{% url 'detail' comment.article.id%}">戻る</a>
+            <a href="{% url 'comment_delete' comment.id %}" >削除</a>
+            <a href="{% url 'comment_update' comment.id %}" >編集</a>
+        </p>     
     </body>
 </html>

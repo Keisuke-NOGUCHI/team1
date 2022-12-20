@@ -73,7 +73,7 @@
           <div class="article">
             <h5>title:{{ article.title }}</h5>
             {% if article.anonymity %}
-            <p>投稿者: {{ article.user }}</p>
+            <p>投稿者: {{ article.user }}[{{ article.user.userinfo.username}}]</p>
             {% else %}
             <p>投稿者: 匿名</p>
             {% endif %}
