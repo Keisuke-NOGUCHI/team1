@@ -6,11 +6,11 @@ from django.conf.urls.static import static
 from app01.views import index
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('home', views.home, name='home'),
     path('priv', views.private_page, name='priv'),
     path('pub', views.public_page, name='pub'),
     path('signup/', views.signup, name='signup'),
-    path('top', index, name='top'),
+    path('', index, name='top'),
     #path('start/', views.start_page, name='start'),
     path('mypage/', views.mypage, name='mypage'),
     path('chat/', views.mypage, name='chat'),
