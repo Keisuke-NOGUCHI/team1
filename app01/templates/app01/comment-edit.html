@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,42 +34,4 @@
             </div>
         </form>
     </body>
-=======
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>コメントの編集</title>
-        {% load static %}
-    </head>
-
-    <body>
-        <h1>編集</h1>
-        <form action="{% url 'comment_update' comment.id %}" method="post">
-            {% csrf_token %}
-            <div>
-                <label for="textInput">内容</label>
-                <textarea id="textInput" name="text" cols="80" rows="8">{{ comment.text }}</textarea>
-            </div>
-            <!--
-            <div>
-                <label for="image">画像</label>
-                <input type="file" name="image" accept="image/jpeg, image/png">
-                {% if article.image %}
-                <img src="{{ article.image.url }}" style="width: 100px;height:auto">
-                {% endif %}
-            </div>
-            
-            <div>
-                <label for="checkbox">匿名</label>
-                <input type="checkbox" name="checkbox">
-            </div>
-            -->
-            
-            <div>
-                <button type="submit" id="button">再投稿</button>
-            </div>
-        </form>
-    </body>
->>>>>>> 683c62027f48aa9bf47b0f120fd8de83e3ec9b10
 </html>
