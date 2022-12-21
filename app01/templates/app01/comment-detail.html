@@ -6,10 +6,11 @@
         <link rel="stylesheet" href="{% static 'css/header.css' %}">
     </head>
 
-    <header>
+    <body>
+      <header>
         <div class="inner">
           <div class="inner_color">
-            <a href="{% url 'home' %}"><h2>アプリ名</h2></a>
+            <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン黒.png" height="32px"></a>
             <p></p>
           </div>
         
@@ -22,8 +23,7 @@
                 <li>
                   {% if user.is_authenticated %}
                   {% if user.userinfo.icon %}
-                  <p>ユーザー名: {{ user.userinfo.username }}</p>
-                  <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+                  <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
                   {% else %}
                   <img src="{% static 'images/user_icon.png' %}" class="user-icon">
                   {% endif %}
@@ -44,8 +44,6 @@
           </div>
         </div>
       </header>
-
-    <body>
         <h1>投稿詳細</h1>
         <br>
         
