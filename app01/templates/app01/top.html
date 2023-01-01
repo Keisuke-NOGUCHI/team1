@@ -55,58 +55,67 @@
 
       <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <h3>学籍番号: {{ user }}</h3>
-        <div>
-          <div>
-            <label for="titleInput">タイトル</label>
-            <input id="titleInput" name="title" type="text" placeholder="Input name">
+        
+        <div class="post">
+          <div class="post_name">
+            <h3>学籍番号: {{ user }}で投稿します</h3>
+          </diV>
+          <div class="post_title">
+            <label for="titleInput">題名</label>
+            <input id="titleInput" name="title" type="text" placeholder="題名" size="36">
           </div>
-          <div>
-            <label for="textInput">内容</label>
-            <textarea id="textInput" name="text" cols="30" rows="10" ></textarea>
+          <div class="post_text">
+            <label for="textInput">本文</label>
+            <textarea id="textInput" name="text" placeholder="本文" cols="35" rows="8" ></textarea>
           </div>
-          <div>
+          <div class="post_image">
             <label for="image">画像</label>
             <input type="file" name="image" accept="image/jpeg, image/png">
           </div>
-          <div>
-            <label for="checkbox">匿名</label>
+          <div class="post_anonymous">
+            <label for="checkbox">匿名の場合はチェックを入れてください</label>
             <input type="checkbox" name="checkbox">
           </div>
-
-        </div>
-        <div>
+        <div class="post_submit">
           <button type="submit" id="button">投稿</button>
         </div>
+      </div>
       </form>
 
-      <br>
+      <div class="rank">
+        <a href="{% url 'rank' %}" id="rank"><img src="..\media\images\rank.png" width="128" height="128"><p>ランキング</p></a>
+      </div>
+
       {% if articles %}
         {% for article in articles %}
+        <a href="{% url 'detail' article.id %}" style="text-decoration:none;">
           <div class="article">
-            <h5>title:{{ article.title }}</h5>
+            <h3>題名:{{ article.title }}</h3>
             {% if article.anonymity %}
             <p>投稿者: {{ article.user }}[{{ article.user.userinfo.username}}]</p>
             {% else %}
             <p>投稿者: 匿名</p>
             {% endif %}
-            {{ article.body | linebreaksbr }}
-            <diV>
+            <p>
+              {{ article.body | linebreaksbr }}
+            </p>
+            <diV class="article_image">
               {% if article.image %}
-              <img src="{{ article.image.url }}" style="width: 100px;height:auto">
+              <img src="{{ article.image.url }}" style="width: 200px;height:auto">
               {% endif %}
             </diV>
             <small>[{{ article.posted_at }}]</small>
             <div>
-              <a href="{% url 'like' article.id %}">
+              <a href="{% url 'like' article.id %}" style="text-decoration:none;">
                 <img src="..\media\images\heart.png" width="16" height="16">
               </a>
                 {{ article.like }}
               
             </div>
-            <a href="{% url 'detail' article.id %}">詳細</a>
+            
             <br>
           </div>
+          </a>
         {% endfor %}
       {% else %}
         <p> 投稿はありません</p>
