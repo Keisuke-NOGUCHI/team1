@@ -32,3 +32,18 @@
     width: 200px;
 }
 */
+
+.timetable {
+    border: 1px solid;
+    color: #2e7c40;
+}
+
+.timetable td {
+    background: #F4FDE8;
+}
+
+.u-icon {
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1.5px solid #eee;
+}

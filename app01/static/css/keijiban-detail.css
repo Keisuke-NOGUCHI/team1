@@ -1,0 +1,29 @@
+.article {
+    margin: 16px;
+    border: solid 2px #4BAA41;
+    border-radius: 4px;
+}
+
+.comment {
+    margin: 16px;
+    border: solid 2px #4BAA41;
+    border-radius: 4px;
+}
+
+.post {
+    display: block;
+    position: relative;
+    border-radius: 4px;
+    background: ghostwhite;
+    border: solid 1px;
+    border-color: #4BA441;
+    box-shadow: 8px; /* 影未実装 */
+    height: auto;
+    margin: 16px;
+}
+
+.post_button {
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+}

@@ -7,7 +7,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from accounts.models import Person
 from django.contrib.auth.models import User
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 def root(request):
     return HttpResponse('Hello Django')
@@ -21,6 +21,7 @@ def param(request):
         text += '{} : {}, '.format(key, request.GET[key])
     return HttpResponse(text)
 
+@login_required
 def top(request):
     return render(request, 'app01/top.html')
 
