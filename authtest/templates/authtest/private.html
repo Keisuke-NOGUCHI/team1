@@ -13,16 +13,16 @@
     <body>
         <header>
             <div class="inner">
-              <div class="inner_color">
+                <div class="inner_color">
                 <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン黒.png" height="32px"></a>
                 <p></p>
-              </div>
+                </div>
             
-              <div class="h-menu">
-                <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
-                <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
-                <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
-                <div id="h-menu_content">
+                <div class="h-menu">
+                    <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
+                    <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
+                    <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
+                        <div id="h-menu_content">
                   <ul>
                     <li>
                       {% if user.is_authenticated %}
@@ -50,9 +50,9 @@
           </header>
         <h1>～アプリ名～</h1>
         {% if user.is_authenticated %}
-        <h2>学籍番号: {{ user.get_username }} でログイン中</h2>
+        <h3>学籍番号: {{ user.get_username }} でログイン中</h3>
         {% else %}
-        <h2>ログインしていません</h2>
+        <h3>ログインしていません</h3>
         {% endif %}
         <h3>プロフィール</h3>
         
@@ -213,8 +213,7 @@
 
         {{ user.userinfo.timetable.mon1 }}
 
-        
-        <table>
+        <table class="timetable" boder="5px">
             <tbody>
                 <tr>
                     <th>〇</th>
