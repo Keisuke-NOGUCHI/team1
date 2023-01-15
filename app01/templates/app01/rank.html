@@ -61,12 +61,11 @@
               {% if article.image %}
               <img src="{{ article.image.url }}" style="width: 100px;height:auto">
               {% else %}
-               {% if article.anonymity %}
-                {% if article.user.userinfo.icon %}
-                <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
-                {% else %}
-<!--<img src="..\media\images\秘密.jpeg">-->
-                {% endif %}
+              {% if article.anonymity %}
+              {% if article.user.userinfo.icon %}
+              <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
+              {% else %}
+              {% endif %}
               {% else %}
               <img src="{% static 'images/user_icon.png' %}" class="user-icon">
               {% endif %}

@@ -47,14 +47,18 @@
         </header>
         <h1>Home</h1>
 
-        {% if user.is_authenticated %}
-        <p>学籍番号: {{ user.username }}</p>
-        <p>ユーザー名: {{ user.userinfo.username }}</p>
-        {% if user.userinfo.icon %}
-        <img src="../../../media/{{ user.userinfo.icon }}" class="u-icon" height="64px">
-        {% else %}
-        <img src="{% static 'images/user_icon.png' %}" class="u-icon">
-        {% endif %}
+        <div class="profile">
+            {% if user.is_authenticated %}
+            {% if user.userinfo.icon %}
+            <img src="../../../media/{{ user.userinfo.icon }}" class="u-icon" height="64px">
+            {% else %}
+            <img src="{% static 'images/user_icon.png' %}" class="u-icon">
+            {% endif %}
+            <div class="user">
+                <p>学籍番号: {{ user.username }}</p>
+                <p>ユーザー名: {{ user.userinfo.username }}</p>
+            </div>
+        </div>
         <a href="{% url 'logout' %}">ログアウト</a>
 
         <table class="timetable" boder="5px">

@@ -9,7 +9,7 @@ def home(request):
 
 @login_required
 def private_page(request):
-    timetableform = TimeTableForm(instance=request.user.userinfo.timetable)
+    timetableform = TimeTableForm(request.POST)
     if request.method == "POST":
         form = Icon(request.POST, request.FILES)
         p = request.user.userinfo
@@ -17,6 +17,11 @@ def private_page(request):
             p.icon=request.FILES.get('icon')
         else:
             p.icon=False
+        if timetableform.is_valid():
+            
+            timetableform.save()
+            
+        p.timetable = timetableform.save()
         p.age = request.POST["age"]
         p.username = request.POST["username"]
         

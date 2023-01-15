@@ -12,8 +12,28 @@ h1 {
     color: aquamarine;
 }
 
+.profile {
+    position: relative;
+    border: solid 1px #2e7c40;
+    border-radius: 8px;
+    margin: 16px;
+    width: auto;
+}
+
 .u-icon {
-    object-fit: cover;
+    display: inline-block;
     border-radius: 50%;
     border: 1.5px solid #eee;
+    transform: translate(50%);
+}
+
+
+.user {
+    display: inline-block;
+	justify-content: center;
+	align-items: center;
+}
+
+.user p {
+    color: black;
 }
