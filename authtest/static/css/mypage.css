@@ -1,11 +1,16 @@
 .timetable {
+    margin: 16px;
     border: 1px solid;
     color: #2e7c40;
+    transform: translate(10%);
+    width: 80%;
+    height: 70%;
 }
 
 .timetable td {
     background: #F4FDE8;
 }
+
 
 
 h1 {

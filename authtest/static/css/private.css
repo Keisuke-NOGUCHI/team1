@@ -1,10 +1,15 @@
 .display_icon {
-    transition: all 5s ease;
     height: 104px;
     width: 104px;
     border-radius: 24px;
     background-color: #fefefe;
-    animation: rotate_anime 1s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    position: absolute;
+    left: 45%;
+    top: 55%;
 }
 
 #trigger {
@@ -12,38 +17,86 @@
 }
 
 #trigger:checked ~ label .display_icon {
-    transform: rotate(3600deg);
+    height: 200px;
+    width: 200px;
+    left: 33%;
     background: #F17C7E;
 }
 
-/* @keyframes rotate_anime {
-    0% {
-        transform:rotate(0deg);
-    }
-    100% {
-        transform:rotate(360deg);
-    }
-} */
 
-/*
-.display_icon:hover {
-    transform: rotate(3600deg);
-    height: 200px;
-    width: 200px;
+.prof {
+    position: relative;
+    border: solid 1px #2e7c40;
+    border-radius: 8px;
+    margin: 16px;
+    width: auto;
+    height: 55%;
+    box-shadow: 2px 2px rgba(62, 144, 30, 0.548);
+    background: #F4FDE8;
 }
-*/
+
+.u-id, .u-name, .u-age {
+    position: absolute;
+    left: 30%;
+}
+
+.edit {
+    position: relative; 
+    border: solid 1px #2e7c40;
+    border-radius: 8px;
+    margin: 16px;
+    height: 70%;
+    box-shadow: 2px 2px rgba(62, 144, 30, 0.548);
+    background: #F4FDE8;
+}
+
+.button {
+    position: absolute;
+    right: 5%;
+    bottom: 0%;
+    margin-bottom: 8px;
+}
+
+.edit h3 {
+    position: absolute;
+    left: 18%;
+    margin: 4px;
+}
+
+.name-edit {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+
+.age-edit {
+    position: absolute;
+    top: 18%;
+    left: 30%;
+}
+
+.icon-edit {
+    position: absolute;
+    top: 26%;
+    left: 30%;
+}
+
+.table-edit {
+    position: absolute;
+    bottom: 10%;
+    left: 15%;
+}
+
 
 .timetable {
+    margin: 16px;
     border: 1px solid;
     color: #2e7c40;
+    transform: translate(10%);
+    width: 80%;
+    height: 70%;
 }
 
 .timetable td {
     background: #F4FDE8;
-}
-
-.u-icon {
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1.5px solid #eee;
 }

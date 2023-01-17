@@ -1,49 +1,51 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>投稿内容の編集</title>
-        {% load static %}
+        <title>Compass</title>
+        <link rel="stylesheet" href="{% static 'css/header.css' %}">
+        <link rel="icon" href="{% static '../../../media/images/app_icon.png' %}">  
     </head>
 
     <body>
-        <header>
-            <div class="inner">
-              <div class="inner_color">
-                <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン黒.png" height="32px"></a>
-                <p></p>
-              </div>
-            
-              <div class="h-menu">
-                <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
-                <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
-                <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
-                <div id="h-menu_content">
-                  <ul>
-                    <li>
-                      {% if user.is_authenticated %}
-                      {% if user.userinfo.icon %}
-                      <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
-                      {% else %}
-                      <img src="{% static 'images/user_icon.png' %}" class="user-icon">
-                      {% endif %}
-                      <div class="user">
-                        <p>学籍番号: {{ user.username }}</p>
-                        <p>ユーザー名: {{ user.userinfo.username }}</p>
-                      </div>
-                      {% endif %}
-                    </li>
-                    <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
-                    <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
-                    <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
-                    <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
-                    <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
-                    <li><a href="{% url 'logout' %}">ログアウト</a></li>
-                  </ul>
-                </div>
-              </div>
+      <header>
+        <div class="inner">
+          <div class="inner_color">
+            <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン.png" height="32px"></a>
+            <p></p>
+          </div>
+        
+          <div class="h-menu">
+            <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
+            <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
+            <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
+            <div id="h-menu_content">
+              <ul>
+                <li>
+                  {% if user.is_authenticated %}
+                  {% if user.userinfo.icon %}
+                  <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
+                  {% else %}
+                  <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+                  {% endif %}
+                  <div class="user">
+                    <p>学籍番号: {{ user.username }}</p>
+                    <p>ユーザー名: {{ user.userinfo.username }}</p>
+                  </div>
+                  {% endif %}
+                </li>
+                <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
+                <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
+                <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
+                <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
+                <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
+                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+              </ul>
             </div>
-          </header>
+          </div>
+        </div>
+      </header>
         <h1>編集</h1>
         <form action="{% url 'update' article.id %}" method="post">
             {% csrf_token %}

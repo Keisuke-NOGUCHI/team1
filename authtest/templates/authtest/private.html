@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>プロフィール</title>
         <link rel="stylesheet" href="{% static 'css/header.css' %}">
+        <link rel="stylesheet" href="{% static 'css/private.css' %}">
         <link rel="icon" type="image/x-icon" href="./favicon.ico">
         <link rel="apple-touch-icon" sizes="180x180" href="../../../media/images/app_icon.png"> 
     </head>
@@ -12,67 +13,79 @@
         <header>
             <div class="inner">
                 <div class="inner_color">
-                <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン黒.png" height="32px"></a>
-                <p></p>
+                    <a href="{% url 'home' %}"><img src="../../../media/images/Compassアイコン.png" height="32px"></a>
                 </div>
             
                 <div class="h-menu">
                     <input id="h-menu_checkbox" class="h-menuCheckbox" type="checkbox">
                     <label class="h-menu_icon" for="h-menu_checkbox"><span class="hamburger-icon"></span></label>
                     <label id="h-menu_black" class="h-menuCheckbox" for="h-menu_checkbox"></label>
-                        <div id="h-menu_content">
-                  <ul>
-                    <li>
-                      {% if user.is_authenticated %}
-                      {% if user.userinfo.icon %}
-                      <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
-                      {% else %}
-                      <img src="{% static 'images/user_icon.png' %}" class="user-icon">
-                      {% endif %}
-                      <div class="user">
-                        <p>学籍番号: {{ user.username }}</p>
-                        <p>ユーザー名: {{ user.userinfo.username }}</p>
-                      </div>
-                      {% endif %}
-                    </li>
-                    <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
-                    <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
-                    <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
-                    <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
-                    <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
-                    <li><a href="{% url 'logout' %}">ログアウト</a></li>
-                  </ul>
+                    <div id="h-menu_content">
+                        <ul>
+                        <li>
+                            {% if user.is_authenticated %}
+                            {% if user.userinfo.icon %}
+                            <img src="../../../media/{{ user.userinfo.icon }}" class="icon">
+                            {% else %}
+                            <img src="{% static 'images/user_icon.png' %}" class="user-icon">
+                            {% endif %}
+                            <div class="user">
+                                <p>学籍番号: {{ user.username }}</p>
+                                <p>ユーザー名: {{ user.userinfo.username }}</p>
+                            </div>
+                            {% endif %}
+                        </li>
+                        <li><a href="{% url 'top' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p></a></li>
+                        <li><a href="{% url 'mypage' %}"><img src="..\media\images\時間割.png" width="48" height="48"><p>時間割</p></a></li>
+                        <li><a href="{% url 'pub' %}"><img src="..\media\images\ondemando.png" width="48" height="48"><p>オンデマンド</p></a></li>
+                        <li><a href="{% url 'chat' %}"><img src="..\media\images\ルーズリーフのノートアイコン.png" width="48" height="48"><p>DM機能</p></a></li>
+                        <li><a href="{% url 'priv' %}"><img src="..\media\images\設定.png" width="48" height="48"><p>設定</p></a></li>
+                        <li><a href="{% url 'logout' %}">ログアウト</a></li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
             </div>
-          </header>
+        </header>
         <h1>～アプリ名～</h1>
-        {% if user.is_authenticated %}
-        <h3>学籍番号: {{ user.get_username }} でログイン中</h3>
-        {% else %}
-        <h3>ログインしていません</h3>
-        {% endif %}
-        <h3>プロフィール</h3>
+        <div class="prof">
+            <span class="u-id">
+                {% if user.is_authenticated %}
+                <h3>学籍番号: {{ user.get_username }} でログイン中</h3>
+                {% else %}
+                <h3>ログインしていません</h3>
+                {% endif %}
+                <p>ユーザー名: {{ user.userinfo.username }}</p>
+                <p>年齢: {{ user.userinfo.age }}歳</p>
+            </span>
+
+            <input type="checkbox" id="trigger">
+            <label for="trigger">
+                <img src="../../../media/{{ user.userinfo.icon }}" class="display_icon">
+            </label>
+        </div>
         
 
-        <p>ユーザー名: {{ user.userinfo.username }}</p>
-        <p>年齢: {{ user.userinfo.age }}歳</p>
+        
         {% comment %} {{ user.userinfo.icon }} {% endcomment %}
-        <input type="checkbox" id="trigger">
-        <label for="trigger">
-            <img src="../../../media/{{ user.userinfo.icon }}" class="display_icon" style="width: 100px;height:auto">
-        </label>
+        
         
         <br>
 
-        <form action="{% url 'priv' %}" method="POST" enctype="multipart/form-data">
+        <div class="edit">
+            <h3>編集</h3>
+            <form action="{% url 'priv' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {% comment %} {{ form.as_p }} {% endcomment %}
-            <input id="username" type="text" value={{ user.userinfo.username }} name="username"><br>
-            <input id="number" type="number" value={{ user.userinfo.age }} name="age" ><br>
-            <input type="file" value="../../../media/"{{ user.userinfo.icon }} name="icon" accept="image/jpeg, image/png">
+            <span class="name-edit">
+                <input id="username" type="text" value={{ user.userinfo.username }} name="username"><br>
+            </span>
+            <span class="age-edit">
+                <input id="number" type="number" value={{ user.userinfo.age }} name="age" ><br>
+            </span>
+            <span class="icon-edit">
+                <input type="file" value="../../../media/"{{ user.userinfo.icon }} name="icon" accept="image/jpeg, image/png">
+            </span>
 
-            <table>
+            <table class="table-edit">
                 <tbody>
                     <tr>
                         <th>〇</th>
@@ -194,22 +207,15 @@
                 </tbody>
             </table>
 
-            
-            <button id="submit" type="submit">編集</button>
+            <span class="button">
+                <button id="submit" type="submit">編集</button>
+            </span>
         </form>
-
-        <a href="{% url 'signup' %}"><img src="..\media\images\top.png" width="48" height="48"><p>掲示板</p>
+        </div>
 
         <br>
-        
-
-        <p><a href="{% url 'home' %}">ホームに戻る</a></p>
 
         {% comment %} {{ timetableform.as_p }} {% endcomment %}
-
-        {{ user.userinfo.timetable.mon1.s_name }}
-
-        {{ user.userinfo.timetable.mon1 }}
 
         <table class="timetable" boder="5px">
             <tbody>
@@ -309,24 +315,6 @@
                     </td>
                     <td>
                         {{ user.userinfo.timetable.fri5 }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>6</th>
-                    <td>
-                        {{ user.userinfo.timetable.mon6 }}
-                    </td>
-                    <td>
-                        {{ user.userinfo.timetable.tue6 }}
-                    </td>
-                    <td>
-                        {{ user.userinfo.timetable.wed6 }}
-                    </td>
-                    <td>
-                        {{ user.userinfo.timetable.thu6 }}
-                    </td>
-                    <td>
-                        {{ user.userinfo.timetable.fri6 }}
                     </td>
                 </tr>
                 <tr>
